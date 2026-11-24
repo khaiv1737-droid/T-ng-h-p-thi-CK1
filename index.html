@@ -1,0 +1,921 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ôn Thi CK1 Azota</title>
+
+<style>
+:root {
+    --bg: #0b0d12;
+    --card: #151922;
+    --card2: #1b202b;
+    --text: #f4f5f7;
+    --muted: #9299a8;
+    --blue: #729cff;
+    --purple: #a78bfa;
+    --green: #56d6a0;
+    --border: rgba(255,255,255,.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Inter, "Segoe UI", sans-serif;
+    min-height: 100vh;
+    padding: 24px;
+}
+
+button, input {
+    font: inherit;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* HEADER */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 38px;
+    gap: 15px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-icon {
+    width: 46px;
+    height: 46px;
+    background: linear-gradient(135deg,#668fff,#a78bfa);
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    font-size: 23px;
+    box-shadow: 0 0 25px #729cff44;
+}
+
+.logo h2 {
+    font-size: 19px;
+    font-weight: 750;
+}
+
+.logo p {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+.clock {
+    color: var(--muted);
+    font-size: 13px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 12px 16px;
+    border-radius: 12px;
+}
+
+/* HERO */
+
+.hero {
+    padding: 36px;
+    border-radius: 25px;
+    background:
+      radial-gradient(circle at 85% 15%,#7560c633,transparent 35%),
+      linear-gradient(135deg,#19243a,#171827);
+    border: 1px solid var(--border);
+    margin-bottom: 22px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero small {
+    color: #9cb6ff;
+    letter-spacing: 2px;
+    font-weight: 700;
+    font-size: 11px;
+}
+
+.hero h1 {
+    font-size: clamp(28px,5vw,45px);
+    margin: 16px 0 12px;
+    letter-spacing: -1.5px;
+}
+
+.hero p {
+    color: #b5bdcf;
+    font-size: 14px;
+    line-height: 1.8;
+    max-width: 550px;
+}
+
+.hero-bottom {
+    display: flex;
+    gap: 10px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.stat {
+    padding: 12px 17px;
+    background: #ffffff0b;
+    border: 1px solid #ffffff15;
+    border-radius: 12px;
+    font-size: 12px;
+    color: #cbd3e5;
+}
+
+/* BENTO */
+
+.bento {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 35px;
+}
+
+.bento-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 23px;
+    min-height: 135px;
+    transition: .3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.bento-card:hover {
+    transform: translateY(-5px);
+    border-color: #729cff88;
+    box-shadow: 0 0 25px #729cff22;
+}
+
+.bento-card h3 {
+    font-size: 27px;
+    margin: 10px 0 5px;
+}
+
+.bento-card p {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.bento-icon {
+    font-size: 23px;
+}
+
+/* SEARCH */
+
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px 0 17px;
+    gap: 12px;
+}
+
+.section-title h2 {
+    font-size: 20px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 13px 16px;
+    border-radius: 13px;
+    width: 280px;
+}
+
+.search-box input {
+    background: transparent;
+    outline: none;
+    border: none;
+    color: white;
+    width: 100%;
+    font-size: 13px;
+}
+
+/* SUBJECT FILTER */
+
+.filters {
+    display: flex;
+    gap: 9px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.filter {
+    background: var(--card);
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 17px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.filter.active,
+.filter:hover {
+    background: #729cff22;
+    border-color: var(--blue);
+    color: #a9c0ff;
+}
+
+/* SUBJECT CARDS */
+
+.subject {
+    margin-bottom: 35px;
+    scroll-margin-top: 20px;
+}
+
+.subject-heading {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.subject-icon {
+    width: 43px;
+    height: 43px;
+    display: grid;
+    place-items: center;
+    border-radius: 13px;
+    font-size: 21px;
+}
+
+.subject-heading h3 {
+    font-size: 18px;
+}
+
+.subject-heading p {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+.cards {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(240px, 1fr);
+    grid-auto-columns: 270px;
+    grid-template-rows: auto;
+    gap: 13px;
+    overflow-x: auto;
+    padding: 5px 3px 18px;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: #414c62 transparent;
+    -webkit-overflow-scrolling: touch;
+}
+
+.exam-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 19px;
+    border-radius: 17px;
+    scroll-snap-align: start;
+    transition: .3s;
+    min-height: 165px;
+    position: relative;
+    overflow: hidden;
+}
+
+.exam-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--blue);
+    box-shadow: 0 0 24px #729cff30;
+}
+
+.exam-card::after {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: #729cff12;
+    border-radius: 50%;
+    right: -40px;
+    top: -40px;
+    transition: .4s;
+}
+
+.exam-card:hover::after {
+    transform: scale(2);
+    background: #729cff22;
+}
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.exam-number {
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.exam-card h4 {
+    font-size: 16px;
+    margin: 20px 0 8px;
+}
+
+.exam-card p {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.open-btn {
+    margin-top: 17px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: #a8bdff;
+    font-size: 12px;
+    text-decoration: none;
+    font-weight: 650;
+    position: relative;
+    z-index: 2;
+}
+
+.open-btn:hover {
+    color: white;
+}
+
+.tag {
+    font-size: 10px;
+    padding: 6px 9px;
+    border-radius: 7px;
+    background: #729cff18;
+    color: #9db7ff;
+}
+
+/* PULSE */
+
+.pulse {
+    position: relative;
+}
+
+.pulse::before {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    border: 1px solid #729cff;
+    border-radius: inherit;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.pulse:active::before {
+    animation: ripple .6s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(.95);
+        opacity: .9;
+    }
+    100% {
+        transform: scale(1.08);
+        opacity: 0;
+    }
+}
+
+/* FOOTER */
+
+footer {
+    border-top: 1px solid var(--border);
+    padding: 25px 0;
+    margin-top: 35px;
+    display: flex;
+    justify-content: space-between;
+    color: var(--muted);
+    font-size: 12px;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:800px) {
+    .bento {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .bento-card:first-child {
+        grid-column: span 2;
+    }
+}
+
+@media(max-width:550px) {
+    body {
+        padding: 15px;
+    }
+
+    header {
+        margin-bottom: 25px;
+    }
+
+    .clock {
+        font-size: 11px;
+        padding: 9px;
+    }
+
+    .hero {
+        padding: 25px 21px;
+    }
+
+    .bento {
+        gap: 10px;
+    }
+
+    .bento-card {
+        padding: 17px;
+        min-height: 115px;
+    }
+
+    .bento-card h3 {
+        font-size: 23px;
+    }
+
+    .section-title {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+
+    .cards {
+        grid-auto-columns: 82%;
+    }
+
+    footer {
+        flex-direction: column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+    <div class="logo">
+        <div class="logo-icon">✦</div>
+        <div>
+            <h2>Ôn Thi CK1 Azota</h2>
+            <p>Không gian học tập lớp 12</p>
+        </div>
+    </div>
+    <div class="clock" id="clock">00:00:00</div>
+</header>
+
+<section class="hero">
+    <small>YOUR STUDY SPACE · 2026</small>
+    <h1>Học tập thông minh.<br>Chinh phục kỳ thi.</h1>
+    <p>
+        Tổng hợp các đề ôn tập học kỳ 1 lớp 12.
+        Lựa chọn môn học, mở đề thi và bắt đầu luyện tập
+        ngay trên Azota.
+    </p>
+
+    <div class="hero-bottom">
+        <div class="stat">📚 Khối lớp 12</div>
+        <div class="stat">📝 Đề thi Azota</div>
+        <div class="stat">⚡ Học tập trực tuyến</div>
+    </div>
+</section>
+
+<section class="bento">
+
+    <div class="bento-card pulse">
+        <div class="bento-icon">📖</div>
+        <h3>20+</h3>
+        <p>Tổng đề ôn tập được tổng hợp</p>
+    </div>
+
+    <div class="bento-card pulse">
+        <div class="bento-icon">💻</div>
+        <h3>03</h3>
+        <p>Môn học</p>
+    </div>
+
+    <div class="bento-card pulse">
+        <div class="bento-icon">🎯</div>
+        <h3>12</h3>
+        <p>Khối lớp</p>
+    </div>
+
+</section>
+
+<div class="section-title">
+    <h2>📚 Thư viện đề thi</h2>
+
+    <div class="search-box">
+        🔍
+        <input id="search" type="text"
+        placeholder="Tìm kiếm môn học, đề thi...">
+    </div>
+</div>
+
+<div class="filters">
+    <button class="filter active" data-filter="all">Tất cả</button>
+    <button class="filter" data-filter="tin">💻 Tin học</button>
+    <button class="filter" data-filter="su">🏛️ Lịch sử</button>
+    <button class="filter" data-filter="dia">🌍 Địa lí</button>
+</div>
+
+<div id="subjects">
+
+<!-- TIN HỌC -->
+
+<section class="subject" data-subject="tin">
+    <div class="subject-heading">
+        <div class="subject-icon"
+        style="background:#729cff22">💻</div>
+        <div>
+            <h3>Tin học</h3>
+            <p>Đề ôn tập môn Tin học lớp 12</p>
+        </div>
+    </div>
+
+    <div class="cards">
+
+        <article class="exam-card pulse">
+            <div class="card-top">
+                <span class="exam-number">TIN HỌC</span>
+                <span class="tag">Đề tổng hợp</span>
+            </div>
+            <h4>Đề ôn tập số 01</h4>
+            <p>Luyện tập kiến thức lớp 12</p>
+            <a class="open-btn"
+            href="https://azota.vn/de-thi/vsbbqo"
+            target="_blank" rel="noopener">Mở đề thi ↗</a>
+        </article>
+
+        <article class="exam-card pulse">
+            <div class="card-top">
+                <span class="exam-number">TIN HỌC</span>
+                <span class="tag">Azota</span>
+            </div>
+            <h4>Đề ôn tập số 02</h4>
+            <p>Luyện tập trực tuyến</p>
+            <a class="open-btn" href="https://azota.vn/de-thi/8u7lin"
+            target="_blank" rel="noopener">Mở đề thi ↗</a>
+        </article>
+
+        <article class="exam-card pulse">
+            <div class="card-top">
+                <span class="exam-number">TIN HỌC</span>
+                <span class="tag">Azota</span>
+            </div>
+            <h4>Đề ôn tập số 03</h4>
+            <p>Luyện tập trực tuyến</p>
+            <a class="open-btn" href="https://azota.vn/de-thi/np4tt8"
+            target="_blank" rel="noopener">Mở đề thi ↗</a>
+        </article>
+
+        <article class="exam-card pulse">
+            <div class="card-top">
+                <span class="exam-number">TIN HỌC</span>
+                <span class="tag">Azota</span>
+            </div>
+            <h4>Đề ôn tập số 04</h4>
+            <p>Luyện tập trực tuyến</p>
+            <a class="open-btn" href="https://azota.vn/de-thi/bm2iwk"
+            target="_blank" rel="noopener">Mở đề thi ↗</a>
+        </article>
+
+        <article class="exam-card pulse">
+            <div class="card-top">
+                <span class="exam-number">TIN HỌC</span>
+                <span class="tag">Azota</span>
+            </div>
+            <h4>Đề ôn tập số 05</h4>
+            <p>Luyện tập trực tuyến</p>
+            <a class="open-btn" href="https://azota.vn/de-thi/aiz1po"
+            target="_blank" rel="noopener">Mở đề thi ↗</a>
+        </article>
+
+        <article class="exam-card pulse">
+            <div class="card-top">
+                <span class="exam-number">TIN HỌC</span>
+                <span class="tag">Azota</span>
+            </div>
+            <h4>Đề ôn tập số 06</h4>
+            <p>Luyện tập trực tuyến</p>
+            <a class="open-btn" href="https://azota.vn/de-thi/el2syo"
+            target="_blank" rel="noopener">Mở đề thi ↗</a>
+        </article>
+
+        <article class="exam-card pulse">
+            <div class="card-top">
+                <span class="exam-number">TIN HỌC</span>
+                <span class="tag">Azota</span>
+            </div>
+            <h4>Đề ôn tập số 07</h4>
+            <p>Luyện tập trực tuyến</p>
+            <a class="open-btn" href="https://azota.vn/de-thi/xiaxps"
+            target="_blank" rel="noopener">Mở đề thi ↗</a>
+        </article>
+
+    </div>
+</section>
+
+<!-- LỊCH SỬ -->
+
+<section class="subject" data-subject="su">
+    <div class="subject-heading">
+        <div class="subject-icon"
+        style="background:#a78bfa22">🏛️</div>
+        <div>
+            <h3>Lịch sử</h3>
+            <p>Đề ôn tập môn Lịch sử lớp 12</p>
+        </div>
+    </div>
+
+    <div class="cards">
+
+        <article class="exam-card pulse">
+            <div class="card-top">
+                <span class="exam-number">LỊCH SỬ</span>
+                <span class="tag">Azota</span>
+            </div>
+            <h4>Đề ôn tập số 01</h4>
+            <p>Luyện tập trực tuyến</p>
+            <a class="open-btn" href="https://azota.vn/de-thi/0ku77s"
+            target="_blank" rel="noopener">Mở đề thi ↗</a>
+        </article>
+
+        <article class="exam-card pulse">
+            <div class="card-top">
+                <span class="exam-number">LỊCH SỬ</span>
+                <span class="tag">Azota</span>
+            </div>
+            <h4>Đề ôn tập số 02</h4>
+            <p>Luyện tập trực tuyến</p>
+            <a class="open-btn" href="https://azota.vn/de-thi/yt5oju"
+            target="_blank" rel="noopener">Mở đề thi ↗</a>
+        </article>
+
+        <article class="exam-card pulse">
+            <div class="card-top">
+                <span class="exam-number">LỊCH SỬ</span>
+                <span class="tag">Azota</span>
+            </div>
+            <h4>Đề ôn tập số 03</h4>
+            <p>Luyện tập trực tuyến</p>
+            <a class="open-btn" href="https://azota.vn/de-thi/ej2kby"
+            target="_blank" rel="noopener">Mở đề thi ↗</a>
+        </article>
+
+        <article class="exam-card pulse">
+            <div class="card-top">
+                <span class="exam-number">LỊCH SỬ</span>
+                <span class="tag">Azota</span>
+            </div>
+            <h4>Đề ôn tập số 04</h4>
+            <p>Luyện tập trực tuyến</p>
+            <a class="open-btn" href="https://azota.vn/de-thi/biyclx"
+            target="_blank" rel="noopener">Mở đề thi ↗</a>
+        </article>
+
+        <article class="exam-card pulse">
+            <div class="card-top">
+                <span class="exam-number">LỊCH SỬ</span>
+                <span class="tag">Azota</span>
+            </div>
+            <h4>Đề ôn tập số 05</h4>
+            <p>Luyện tập trực tuyến</p>
+            <a class="open-btn" href="https://azota.vn/de-thi/sjlmdu"
+            target="_blank" rel="noopener">Mở đề thi ↗</a>
+        </article>
+
+        <article class="exam-card pulse">
+            <div class="card-top">
+                <span class="exam-number">LỊCH SỬ</span>
+                <span class="tag">Azota</span>
+            </div>
+            <h4>Đề ôn tập số 06</h4>
+            <p>Luyện tập trực tuyến</p>
+            <a class="open-btn" href="https://azota.vn/de-thi/q6pn6k"
+            target="_blank" rel="noopener">Mở đề thi ↗</a>
+        </article>
+
+        <article class="exam-card pulse">
+            <div class="card-top">
+                <span class="exam-number">LỊCH SỬ</span>
+                <span class="tag">Azota</span>
+            </div>
+            <h4>Đề ôn tập số 07</h4>
+            <p>Luyện tập trực tuyến</p>
+            <a class="open-btn" href="https://azota.vn/de-thi/bipk2d"
+            target="_blank" rel="noopener">Mở đề thi ↗</a>
+        </article>
+
+        <article class="exam-card pulse">
+            <div class="card-top">
+                <span class="exam-number">LỊCH SỬ</span>
+                <span class="tag">Azota</span>
+            </div>
+            <h4>Đề ôn tập số 08</h4>
+            <p>Luyện tập trực tuyến</p>
+            <a class="open-btn" href="https://azota.vn/de-thi/o03rse"
+            target="_blank" rel="noopener">Mở đề thi ↗</a>
+        </article>
+
+        <article class="exam-card pulse">
+            <div class="card-top">
+                <span class="exam-number">LỊCH SỬ</span>
+                <span class="tag">Azota</span>
+            </div>
+            <h4>Đề ôn tập số 09</h4>
+            <p>Luyện tập trực tuyến</p>
+            <a class="open-btn" href="https://azota.vn/de-thi/1rxysj"
+            target="_blank" rel="noopener">Mở đề thi ↗</a>
+        </article>
+
+    </div>
+</section>
+
+<!-- ĐỊA LÍ -->
+
+<section class="subject" data-subject="dia">
+    <div class="subject-heading">
+        <div class="subject-icon"
+        style="background:#56d6a022">🌍</div>
+        <div>
+            <h3>Địa lí</h3>
+            <p>Đề ôn tập môn Địa lí lớp 12</p>
+        </div>
+    </div>
+
+    <div class="cards">
+
+        <article class="exam-card pulse">
+            <div class="card-top">
+                <span class="exam-number">ĐỊA LÍ</span>
+                <span class="tag">Azota</span>
+            </div>
+            <h4>Đề ôn tập số 01</h4>
+            <p>Luyện tập trực tuyến</p>
+            <a class="open-btn" href="https://azota.vn/de-thi/hfz3sz"
+            target="_blank" rel="noopener">Mở đề thi ↗</a>
+        </article>
+
+        <article class="exam-card pulse">
+            <div class="card-top">
+                <span class="exam-number">ĐỊA LÍ</span>
+                <span class="tag">Azota</span>
+            </div>
+            <h4>Đề ôn tập số 02</h4>
+            <p>Luyện tập trực tuyến</p>
+            <a class="open-btn" href="https://azota.vn/de-thi/cyf30t"
+            target="_blank" rel="noopener">Mở đề thi ↗</a>
+        </article>
+
+        <article class="exam-card pulse">
+            <div class="card-top">
+                <span class="exam-number">ĐỊA LÍ</span>
+                <span class="tag">Azota</span>
+            </div>
+            <h4>Đề ôn tập số 03</h4>
+            <p>Luyện tập trực tuyến</p>
+            <a class="open-btn" href="https://azota.vn/de-thi/krhrat"
+            target="_blank" rel="noopener">Mở đề thi ↗</a>
+        </article>
+
+        <article class="exam-card pulse">
+            <div class="card-top">
+                <span class="exam-number">ĐỊA LÍ</span>
+                <span class="tag">Azota</span>
+            </div>
+            <h4>Đề ôn tập số 04</h4>
+            <p>Luyện tập trực tuyến</p>
+            <a class="open-btn" href="https://azota.vn/de-thi/eqm4xz"
+            target="_blank" rel="noopener">Mở đề thi ↗</a>
+        </article>
+
+    </div>
+</section>
+
+</div>
+
+<footer>
+    <span>✦ Ôn Thi CK1 Azota · 2026</span>
+    <span>Made for Grade 12 students</span>
+</footer>
+
+</div>
+
+<script>
+
+// ĐỒNG HỒ THỜI GIAN
+function updateClock() {
+    const now = new Date();
+    document.getElementById("clock").textContent =
+        now.toLocaleTimeString("vi-VN");
+}
+updateClock();
+setInterval(updateClock, 1000);
+
+
+// LỌC MÔN HỌC
+const filters = document.querySelectorAll(".filter");
+const subjects = document.querySelectorAll(".subject");
+
+filters.forEach(button => {
+    button.addEventListener("click", () => {
+        filters.forEach(b => b.classList.remove("active"));
+        button.classList.add("active");
+
+        const value = button.dataset.filter;
+
+        subjects.forEach(subject => {
+            subject.style.display =
+                value === "all" ||
+                subject.dataset.subject === value
+                ? "block" : "none";
+        });
+
+        document.getElementById("search").value = "";
+        document.querySelectorAll(".exam-card").forEach(card => {
+            card.style.display = "block";
+        });
+    });
+});
+
+
+// TÌM KIẾM ĐỀ THI
+const search = document.getElementById("search");
+
+search.addEventListener("input", () => {
+    const keyword = search.value
+        .toLowerCase()
+        .trim();
+
+    subjects.forEach(subject => {
+        let visible = 0;
+
+        subject.querySelectorAll(".exam-card")
+        .forEach(card => {
+            const match = card.textContent
+                .toLowerCase()
+                .includes(keyword);
+
+            card.style.display = match ? "block" : "none";
+
+            if (match) visible++;
+        });
+
+        subject.style.display = visible > 0
+            ? "block" : "none";
+    });
+
+    filters.forEach(b => b.classList.remove("active"));
+    document.querySelector('[data-filter="all"]')
+        .classList.add("active");
+});
+
+
+// HIỆU ỨNG NHẤN THẺ
+document.querySelectorAll(".pulse").forEach(card => {
+    card.addEventListener("click", () => {
+        card.classList.remove("pulse");
+        void card.offsetWidth;
+        card.classList.add("pulse");
+    });
+});
+
+</script>
+
+</body>
+</html>
